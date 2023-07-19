@@ -4,6 +4,13 @@ const axios = require('axios');
 const BrowserWindow = electron.BrowserWindow;
 const ipc = electron.ipcRenderer;
 const tokenPrefix = "CRYPTOALERT";
+const mysql = require('mysql');
+const con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "password",
+    database: "crypto_price_alerter"
+  });
 
 const prices = document.querySelectorAll('h1');
 const notifyButtons = document.querySelectorAll('button');
@@ -50,6 +57,9 @@ function initExchangeBTC(){
 function getBTC() {
     axios.get(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,BCH,EOS,XRP,ETC,WTC,LINK,BNB&tsyms=USD,EUR`)
         .then(res => {
+            var date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+            var rates = "'" + date + "', "
+            var currencies = "scrape_time, "
             const cryptos = res.data;
             for (price of prices) {
                 const price_element = document.getElementById(price.id);
@@ -70,9 +80,20 @@ function getBTC() {
 
                 }
                 price_element.innerHTML = cryptos[currency].USD;
-
+                currencies = currencies+currency+", "
+                rates = rates+"'"+cryptos[currency].USD+"', "
 
             }
+
+            currencies = currencies.substring(0, currencies.length - 2) + '';
+            rates = rates.substring(0, rates.length - 2) + '';
+
+            write_rates = "INSERT INTO rates (" + currencies + ") VALUES (" + rates + ");";
+            console.log(write_rates)
+            con.query(write_rates, function (err, result) {
+                if (err) throw err;
+                console.log("something went wrong: " + result.insertId);
+            });
 
             el_ments.forEach((item) => {
                 const targetPrice = document.getElementById('targetPrice_' + item);
@@ -90,6 +111,10 @@ function getBTC() {
         })
 }
 
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected to db!");
+});
 initExchangeBTC();
 getBTC();
 setInterval(getBTC, 10000)
