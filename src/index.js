@@ -1,7 +1,7 @@
 const electron = require('electron');
 const path = require('path');
 const axios = require('axios');
-const BrowserWindow = electron.remote.BrowserWindow;
+const BrowserWindow = electron.BrowserWindow;
 const ipc = electron.ipcRenderer;
 const tokenPrefix = "CRYPTOALERT";
 
