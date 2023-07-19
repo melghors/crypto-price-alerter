@@ -1,4 +1,4 @@
-# cryptocurrency-alert
+# crypto-price-alerter
 
 **Clone and run for a quick way to see Electron in action.**
 
@@ -20,9 +20,9 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-git clone https://github.com/cryptoyarns/cryptocurrency-alert
+git clone https://github.com/Sky2Land/crypto-price-alerter
 # Go into the repository
-cd cryptocurrency-alert
+cd crypto-price-alerter
 # Install dependencies
 npm install
 # Run the app
@@ -35,7 +35,6 @@ Note: If you're using Linux Bash for Windows, [see this guide](https://www.howto
 
 - [electronjs.org/docs](https://electronjs.org/docs) - all of Electron's documentation
 - [electronjs.org/community#boilerplates](https://electronjs.org/community#boilerplates) - sample starter apps created by the community
-- [electron/cryptocurrency-alert](https://github.com/cryptoyarns/cryptocurrency-alert) - a very basic starter Electron app
 - [electron/simple-samples](https://github.com/cryptoyarns/simple-samples) - small applications with ideas for taking them further
 - [electron/electron-api-demos](https://github.com/cryptoyarns/electron-api-demos) - an Electron app that teaches you how to use Electron
 - [hokein/electron-sample-apps](https://github.com/hokein/electron-sample-apps) - small demo apps for the various Electron APIs
