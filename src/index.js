@@ -92,9 +92,7 @@ function getBTC() {
             console.log(write_rates)
             con.query(write_rates, function (err, result) {
                 if (err) throw err;
-                console.log("something went wrong: " + result.insertId);
             });
-
             el_ments.forEach((item) => {
                 const targetPrice = document.getElementById('targetPrice_' + item);
                 var price = targetPrice.innerHTML.split('$')[1];
@@ -103,9 +101,14 @@ function getBTC() {
                 }
                 notification.title = item + " Alert";
                 notification.body = item + " just beat your target price"
-
+                console.log(price)
                 if (targetPrice.innerHTML != "" && targetPrice.innerHTML != '$0' && price < cryptos[item].USD) {
                     const myNotification = new window.Notification(notification.title, notification);
+                    write_alert = "INSERT INTO alerts (scrape_time, CURRENCY, TARGET_RATE, CURRENT_RATE) VALUES ('" + date + "', '" + item + "', '" + price + "', '" + cryptos[item].USD + "');";
+                    console.log(write_rates)
+                    con.query(write_alert, function (err, result) {
+                        if (err) throw err;
+                    });
                 }
             })
         })
