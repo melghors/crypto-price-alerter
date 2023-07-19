@@ -1,0 +1,25 @@
+{
+  "name": "cryptocurrency-alert",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/cryptoyarns/cryptocurrency-alert",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^7.2.4"
+  },
+  "dependencies": {
+    "axios": "^0.19.0"
+  }
+}
